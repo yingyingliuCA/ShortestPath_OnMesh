@@ -217,7 +217,8 @@ def greedy(mesh, node, time, algTimeTable, algFlag):
 					goRight = False
 		#randomization
 		if algFlag == 1 or algFlag == 4:
-			probX = 1.0*nextEstX/(nextEstX+nextEstY)
+			#probX = 1.0*nextEstX/(nextEstX+nextEstY) #wrong, the smaller edge should have higher probably 
+			probX = 1-1.0*nextEstX/(nextEstX+nextEstY)
 			probY = 1-probX
 			rand = random.uniform(0, 1)
 			if rand <= probX:
@@ -588,7 +589,7 @@ if __name__ == '__main__':
 		#m.reset_vertices()
 
 		for iter in range(0,3): 
-			for i in range(0,8):
+			for i in range(0,6):
 			#for i in range(7,8):
 				m.add_vertices()
 				startTime = time.time()
@@ -613,14 +614,14 @@ if __name__ == '__main__':
 				#print 'Executime time:', exeTime
 				#print path
 				print 'iter=',iter,'n=',n,'alg=',i,',cost=',path[-1][1],',exeTime=',exeTime
-			m.add_vertices()
-			startTime = time.time()
-			acoCost = aco(m,1) #limit number of ants to 32. Results not good, exe time not much different from unlimited version 
-			exeTime = time.time()-startTime
-			print 'iter=',iter,'n=',n,'alg=',8,',cost=',acoCost,',exeTime=',exeTime
-			m.add_vertices()
-			startTime = time.time()
-			acoCost = aco(m,0) #does not limit number of ants
-			exeTime = time.time()-startTime
-			print 'iter=',iter,'n=',n,'alg=',9,',cost=',acoCost,',exeTime=',exeTime			
+			#m.add_vertices()
+			#startTime = time.time()
+			#acoCost = aco(m,1) #limit number of ants to 32. Results not good, exe time not much different from unlimited version 
+			#exeTime = time.time()-startTime
+			#print 'iter=',iter,'n=',n,'alg=',8,',cost=',acoCost,',exeTime=',exeTime
+			#m.add_vertices()
+			#startTime = time.time()
+			#acoCost = aco(m,0) #does not limit number of ants
+			#exeTime = time.time()-startTime
+			#print 'iter=',iter,'n=',n,'alg=',9,',cost=',acoCost,',exeTime=',exeTime			
 
